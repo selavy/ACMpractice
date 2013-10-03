@@ -1,0 +1,5 @@
+(word (with friends))
+)()BALANCED?(()
+ever and forever and for
+o()xxx[{:::::::::>
+quoted ones still break "("
