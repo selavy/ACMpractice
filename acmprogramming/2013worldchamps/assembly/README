@@ -1,0 +1,8 @@
+Just run "make" and it will run all of the test inputs given at the contest and diff the outputs.  "make clean" will get rid of the test_output?.txt files.
+If you want to see the graph, just uncomment the line #define __DEBUG__, but this will of course break the Makefile since the diffs will fail.
+
+See if you can implement a better traverse() function.  To be honest, I don't know what the fastest implementation is.
+
+I tried to comment it well.  Have fun :3
+
+Peter

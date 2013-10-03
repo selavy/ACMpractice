@@ -1,0 +1,1 @@
+Problem B - Magic Multiple

@@ -1,0 +1,2 @@
+Need to adjust the print command in the END state so that it will only print from the first 1 to the last 1 inclusive.  Currently, it will start printing when it hits the first 1
+and will just keep printing to the end of the tape, but it is possible that the end of the tape could be all 'B''s, and those should not be printed.
