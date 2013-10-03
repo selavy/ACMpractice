@@ -1,0 +1,4 @@
+all: build
+	./socket
+build:
+	gcc -g -Wall -Werror main.c -o socket

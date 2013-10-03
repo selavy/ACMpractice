@@ -1,0 +1,96 @@
+#include<stdio.h>
+#include<string.h>
+
+/* Given an image represented by an NxN matrix, where each pixel in the image is 4 bytes, write a method to rotate the image by 90 degrees (do in place) */
+
+#define N 11
+#define T (N-1)
+
+//#define __DEBUG__
+
+char matrix[N][N][4];
+
+void swap( int a, int b, int c, int d )
+{
+  char tmp[4];
+  memcpy( tmp, matrix[a][b], 4 );
+  memcpy( matrix[a][b], matrix[c][d], 4 );
+  memcpy( matrix[c][d], tmp, 4 );
+}
+
+void print_matrix()
+{
+  unsigned int i, j, t;
+
+  for( i = 0; i < N; ++i )
+    {
+      for( j = 0; j < N; ++j )
+	{
+	  for( t = 0; t < 4; ++t )
+	    {
+	      printf("%c", matrix[i][j][t]);
+	    }
+	  printf(" ");
+	}
+      printf("\n");
+    }
+  printf("\n");
+}
+
+int main( int argc, char ** argv )
+{
+  unsigned int i, j, count;
+
+  count = 0;
+  for( i = 0; i < N; ++i )
+    {
+      for( j = 0; j < N; ++j )
+	{
+	  memset( matrix[i][j], 'a'+(count % 26), 4);
+	  count++;
+	}
+    }
+
+  print_matrix();
+
+  printf("rotating matrix 90 CW...\n");
+
+  // rotate 90 degrees CW
+
+  for( i = 0; i < N/2; ++i )
+    {
+      // for each layer
+
+      // swap corners
+      swap( i,i,T-i,i );
+      swap( T-i,i,T-i,T-i);
+      swap( T-i,T-i,i,T-i);
+
+#ifdef __DEBUG__
+      printf("corners...\n");
+      printf("(%u,%u) (%u,%u)\n", i,i,T-i,i);
+      printf("(%u,%u) (%u,%u)\n", T-i,i,T-i,T-i);
+      printf("(%u,%u) (%u,%u)\n", T-i,T-i,i,T-i);
+      printf("\n");
+#endif
+
+      // swap the middle elements
+      for( j = i+1; j < (T-i); j++ )
+	{
+	  swap( i,j,T-j,i );
+	  swap( T-j,i,T-i,T-j );
+	  swap( T-i,T-j,j,T-i );
+
+#ifdef __DEBUG__
+	  printf("(%u,%u) (%u,%u)\n", i,j,T-j,i);
+	  printf("(%u,%u) (%u,%u)\n", T-j,i,T-i,T-j);
+	  printf("(%u,%u) (%u,%u)\n", T-i,T-j,j,T-i);
+	  printf("\n");
+#endif
+	}
+    }
+
+  print_matrix();
+
+  return 0;
+}
